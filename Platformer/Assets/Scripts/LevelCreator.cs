@@ -5,12 +5,13 @@ public class LevelCreator : MonoBehaviour
     public GameObject player;
     public GameObject platform;
 
-    [SerializeField] int _rows;
-    [SerializeField] int _columns;
+    int _rows;
+    int _columns;
 
-    public static event Action<int, int> onLevelCreated;
     void Start()
     {
+        _rows = GameManager.Get().rowsLevel;
+        _columns = GameManager.Get().columnsLevel;
         BuildLevel();
     }
     void BuildLevel()
@@ -24,8 +25,10 @@ public class LevelCreator : MonoBehaviour
             for (int columnIndex = 0; columnIndex < _columns; columnIndex++)
             {
                 position = new Vector3(columnIndex, 0, rowIndex);
+
                 go = Instantiate(platform, position, Quaternion.identity, platformParent.transform);
                 go.name = "Platform";
+                go.GetComponent<Platform>().enabled = !(rowIndex == _rows / 2 && columnIndex == _columns / 2);
             }
         }
 
@@ -34,7 +37,5 @@ public class LevelCreator : MonoBehaviour
         position = new Vector3(playerX, 0, playerZ);
         go = Instantiate(player, position, Quaternion.identity);
         go.name = "Player";
-
-        onLevelCreated?.Invoke(_rows, _columns);
     }
 }

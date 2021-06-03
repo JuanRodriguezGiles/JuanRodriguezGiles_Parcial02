@@ -3,10 +3,12 @@ public class Platform : MonoBehaviour
 {
     [SerializeField] float _randomThreshold;
     [SerializeField] float _timeThreshold;
+
     float _time;
     MeshRenderer _mesh;
     BoxCollider _collider;
-    void OnEnable()
+
+    void Start()
     {
         _mesh = GetComponent<MeshRenderer>();
         _collider = GetComponent<BoxCollider>();

@@ -6,22 +6,35 @@ using Random = UnityEngine.Random;
 public class CoinSpawner : MonoBehaviour
 {
     public GameObject coin;
+    GameObject _coinParent;
+
+    [SerializeField] float _timeThreshold;
+    List<Vector3> _emptyPositions;
+
+    float _time;
     int _rows;
     int _columns;
-    private List<Vector3> _emptyPositions;
-    [SerializeField] float _timeThreshold;
-    float _time;
+
     void OnEnable()
     {
-        LevelCreator.onLevelCreated += GetLevelSize;
         Coin.onCoinPickUp += UpdateEmptyPositions;
-        _emptyPositions = new List<Vector3>();
     }
-    void GetLevelSize(int rows, int columns)
+    void OnDisable()
     {
-        _rows = rows;
-        _columns = columns;
+        Coin.onCoinPickUp -= UpdateEmptyPositions;
+    }
+    void Start()
+    {
+        _emptyPositions = new List<Vector3>();
+        _coinParent = new GameObject("Coins");
 
+        _rows = GameManager.Get().rowsLevel;
+        _columns = GameManager.Get().columnsLevel;
+
+        GetEmptyPositions();
+    }
+    void GetEmptyPositions()
+    {
         for (int rowIndex = 0; rowIndex < _rows; rowIndex++)
         {
             for (int columnIndex = 0; columnIndex < _columns; columnIndex++)
@@ -31,16 +44,17 @@ public class CoinSpawner : MonoBehaviour
             }
         }
     }
+    void UpdateEmptyPositions(Coin _coin)
+    {
+        _emptyPositions.Add(_coin.transform.position);
+    }
     void SpawnCoin()
     {
         int index = Random.Range(0, _emptyPositions.Count);
         Vector3 position = _emptyPositions[index];
-        Instantiate(coin, position, Quaternion.identity);
+        GameObject go = Instantiate(coin, position, Quaternion.identity, _coinParent.transform);
+        go.name = "Coin";
         _emptyPositions.RemoveAt(index);
-    }
-    void UpdateEmptyPositions(Coin _coin)
-    {
-        _emptyPositions.Add(_coin.transform.position);
     }
     void Update()
     {

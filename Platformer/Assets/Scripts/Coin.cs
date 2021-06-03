@@ -4,11 +4,13 @@ public class Coin : MonoBehaviour
 {
     public Material yellow;
     public Material red;
+
     public bool givesPoints;
     MeshRenderer _mesh;
     float _time;
     public static event Action<Coin> onCoinPickUp;
-    void OnEnable()
+
+    void Start()
     {
         _mesh = GetComponent<MeshRenderer>();
     }
