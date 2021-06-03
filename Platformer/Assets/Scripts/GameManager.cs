@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 public class GameManager : MonoBehaviour
 {
@@ -23,11 +24,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] float _maxTimeSeconds;
 
     float _time;
-    string playerName;
+    string userName;
+
+    public static event Action<float> onTimeChange;
+
+    void Start()
+    {
+        _time = _maxTimeSeconds;
+    }
     void Update()
     {
-        _time += Time.deltaTime;
-        if (_time >= _maxTimeSeconds)
+        _time -= Time.deltaTime;
+        onTimeChange?.Invoke(_time);
+        if (_time <= 0)
             GameOver();
     }
     void GameOver()

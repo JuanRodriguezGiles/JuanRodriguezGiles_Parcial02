@@ -11,21 +11,17 @@ public class Player : MonoBehaviour
 
     public static event Action<int> onHpChange;
     public static event Action<int> onScoreChange;
-    public static event Action onPlayerFallen;
-    public static event Action onPlayerDeath;
+    public static event Action<int> onDeathsChange;
+
     void OnEnable()
     {
         Coin.onCoinPickUp += OnCoinPickUp;
         onHpChange += OnHpChange;
-        onPlayerDeath += OnPlayerDeath;
-        onPlayerFallen += OnPlayerFallen;
     }
     void OnDisable()
     {
         Coin.onCoinPickUp -= OnCoinPickUp;
         onHpChange -= OnHpChange;
-        onPlayerDeath -= OnPlayerDeath;
-        onPlayerFallen -= OnPlayerFallen;
     }
     void Start()
     {
@@ -57,7 +53,7 @@ public class Player : MonoBehaviour
     {
         if (hp == 0)
         {
-            onPlayerDeath?.Invoke();
+            OnPlayerDeath();
         }
     }
     void OnPlayerDeath()
@@ -69,6 +65,7 @@ public class Player : MonoBehaviour
         onHpChange?.Invoke(_hp);
 
         _deathCount++;
+        onDeathsChange?.Invoke(_deathCount);
 
         Respawn();
     }
@@ -84,7 +81,7 @@ public class Player : MonoBehaviour
     {
         if (transform.position.y < -10)
         {
-            onPlayerFallen?.Invoke();
+           OnPlayerFallen();
         }
     }
 }
