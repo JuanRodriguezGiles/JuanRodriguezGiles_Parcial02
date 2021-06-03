@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 public class LevelCreator : MonoBehaviour
 {
@@ -6,6 +7,8 @@ public class LevelCreator : MonoBehaviour
 
     [SerializeField] int _rows;
     [SerializeField] int _columns;
+
+    public static event Action<int, int> onLevelCreated;
     void Start()
     {
         BuildLevel();
@@ -31,5 +34,7 @@ public class LevelCreator : MonoBehaviour
         position = new Vector3(playerX, 0, playerZ);
         go = Instantiate(player, position, Quaternion.identity);
         go.name = "Player";
+
+        onLevelCreated?.Invoke(_rows, _columns);
     }
 }

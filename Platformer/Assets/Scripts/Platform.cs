@@ -1,18 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 public class Platform : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] float _randomThreshold;
+    [SerializeField] float _timeThreshold;
+    float _time;
+    MeshRenderer _mesh;
+    BoxCollider _collider;
+    void OnEnable()
     {
-        
+        _mesh = GetComponent<MeshRenderer>();
+        _collider = GetComponent<BoxCollider>();
     }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        _time += Time.deltaTime;
+        if (_time < _timeThreshold) return;
+        if (Random.value > _randomThreshold)
+        {
+            _mesh.enabled = false;
+            _collider.enabled = false;
+        }
+        else
+        {
+            _mesh.enabled = true;
+            _collider.enabled = true;
+        }
+        _time = 0;
     }
 }
