@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public int rowsLevel;
     public int columnsLevel;
     [SerializeField] float _maxTimeSeconds;
+
     float _time;
     string playerName;
     void Update()

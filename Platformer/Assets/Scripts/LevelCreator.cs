@@ -28,12 +28,13 @@ public class LevelCreator : MonoBehaviour
 
                 go = Instantiate(platform, position, Quaternion.identity, platformParent.transform);
                 go.name = "Platform";
-                go.GetComponent<Platform>().enabled = !(rowIndex == _rows / 2 && columnIndex == _columns / 2);
+
+                go.GetComponent<Platform>().enabled = !(rowIndex == _rows / 2 && columnIndex == _columns / 2); //Creates safespot for player respawn
             }
         }
 
-        int playerX = Mathf.RoundToInt(_columns / 2);
-        int playerZ = Mathf.RoundToInt(_rows / 2);
+        int playerX = _columns / 2;
+        int playerZ = _rows / 2;
         position = new Vector3(playerX, 0, playerZ);
         go = Instantiate(player, position, Quaternion.identity);
         go.name = "Player";
