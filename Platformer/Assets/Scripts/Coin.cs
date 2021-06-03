@@ -2,9 +2,6 @@ using System;
 using UnityEngine;
 public class Coin : MonoBehaviour
 {
-    public Material yellow;
-    public Material red;
-
     public bool givesPoints;
     MeshRenderer _mesh;
     float _time;
@@ -13,15 +10,18 @@ public class Coin : MonoBehaviour
     void Start()
     {
         _mesh = GetComponent<MeshRenderer>();
+        _mesh.material.color = Color.yellow;
     }
     void OnTriggerEnter()
     {
-        givesPoints = Mathf.RoundToInt(_time % 2) == 0;
+        givesPoints = _mesh.material.color == Color.yellow;
         onCoinPickUp?.Invoke(this);
     }
     void Update()
     {
         _time += Time.deltaTime;
-        _mesh.material = Mathf.RoundToInt(_time % 2) == 0 ? yellow : red;
+        if (!(_time >= 2)) return;
+        _mesh.material.color = _mesh.material.color == Color.yellow ? Color.red : Color.yellow;
+        _time = 0;
     }
 }

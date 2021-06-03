@@ -535,6 +535,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4deded326aa08a6478b117410021b283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hp: 3
+  _score: 0
+  _deathCount: 0
 --- !u!114 &114963311885979670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,7 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97fca36bd81de7c4cafce7bbf02ca611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3
   canRun: 0
   runSpeed: 9
   runningKey: 304
