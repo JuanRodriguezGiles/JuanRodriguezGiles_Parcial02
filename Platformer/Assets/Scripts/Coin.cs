@@ -4,18 +4,18 @@ public class Coin : MonoBehaviour
 {
     public Material yellow;
     public Material red;
+    public bool givesPoints;
     MeshRenderer _mesh;
-    bool _givesPoints;
     float _time;
-    public static event Action<Boolean> onCoinPickUp;
+    public static event Action<Coin> onCoinPickUp;
     void OnEnable()
     {
         _mesh = GetComponent<MeshRenderer>();
     }
     void OnTriggerEnter()
     {
-        _givesPoints = Mathf.RoundToInt(_time % 2) == 0;
-        onCoinPickUp?.Invoke(_givesPoints);
+        givesPoints = Mathf.RoundToInt(_time % 2) == 0;
+        onCoinPickUp?.Invoke(this);
     }
     void Update()
     {

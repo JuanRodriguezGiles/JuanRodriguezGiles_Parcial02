@@ -8,12 +8,14 @@ public class CoinSpawner : MonoBehaviour
     public GameObject coin;
     int _rows;
     int _columns;
-    List<Vector3> _emptyPositions;
+    private List<Vector3> _emptyPositions;
     [SerializeField] float _timeThreshold;
     float _time;
     void OnEnable()
     {
         LevelCreator.onLevelCreated += GetLevelSize;
+        Coin.onCoinPickUp += UpdateEmptyPositions;
+        _emptyPositions = new List<Vector3>();
     }
     void GetLevelSize(int rows, int columns)
     {
@@ -33,9 +35,13 @@ public class CoinSpawner : MonoBehaviour
     {
         int index = Random.Range(0, _emptyPositions.Count);
         Vector3 position = _emptyPositions[index];
+        Instantiate(coin, position, Quaternion.identity);
         _emptyPositions.RemoveAt(index);
     }
-    void UpdateEmptyPositions()
+    void UpdateEmptyPositions(Coin _coin)
+    {
+        _emptyPositions.Add(_coin.transform.position);
+    }
     void Update()
     {
         _time += Time.deltaTime;
