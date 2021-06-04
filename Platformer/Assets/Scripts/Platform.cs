@@ -13,7 +13,7 @@ public class Platform : MonoBehaviour
     void Start()
     {
         _mesh = GetComponent<MeshRenderer>();
-        _mesh.material.color=Color.green;
+        _mesh.material.color = Color.green;
         _collider = GetComponent<BoxCollider>();
     }
     void Update()
@@ -50,7 +50,7 @@ public class Platform : MonoBehaviour
         _collider.enabled = false;
         while (transform.position.y > -5)
         {
-            transform.Translate(Vector3.down * Time.deltaTime);
+            transform.Translate(Vector3.down * Time.deltaTime * 2);
             yield return null;
         }
 

@@ -1,5 +1,8 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviour
 {
     #region INSTANCE
@@ -24,7 +27,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float _maxTimeSeconds;
 
     float _time;
-    string userName;
+    public string userName;
 
     public static event Action<float> onTimeChange;
 
@@ -32,15 +35,23 @@ public class GameManager : MonoBehaviour
     {
         _time = _maxTimeSeconds;
     }
-    void Update()
-    {
-        _time -= Time.deltaTime;
-        onTimeChange?.Invoke(_time);
-        if (_time <= 0)
-            GameOver();
-    }
     void GameOver()
     {
 
+    }
+    public void LoadGameplay()
+    {
+        SceneManager.LoadScene("GamePlay");
+        StartCoroutine(Timer());
+    }
+    IEnumerator Timer()
+    {
+        while (_time > 0)
+        {
+            _time -= Time.deltaTime;
+            onTimeChange?.Invoke(_time);
+            yield return null;
+        }
+        GameOver();
     }
 }
