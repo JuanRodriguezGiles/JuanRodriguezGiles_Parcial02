@@ -5,8 +5,9 @@ public class UiMainMenu : MonoBehaviour
     public TMP_InputField nameField;
     public void Play()
     {
-        GameManager.Get().userName = nameField.text;
-        GameManager.Get().LoadGameplay();
+        GameManager.Instance.playerInfo.name = nameField.text;
+        SqlConnection.Instance.CallRegister();
+        GameManager.Instance.LoadGameplay();
     }
     public void Exit()
     {

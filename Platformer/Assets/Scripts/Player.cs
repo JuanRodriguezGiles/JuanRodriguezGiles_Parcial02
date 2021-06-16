@@ -3,9 +3,6 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] int _hp = 3;
-    [SerializeField] int _score;
-    [SerializeField] int _deathCount;
-
     int _rows;
     int _columns;
 
@@ -25,15 +22,15 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
-        _rows = GameManager.Get().rowsLevel;
-        _columns = GameManager.Get().columnsLevel;
+        _rows = GameManager.Instance.rowsLevel;
+        _columns = GameManager.Instance.columnsLevel;
     }
     void OnCoinPickUp(Coin coin)
     {
         if (coin.givesPoints)
         {
-            _score += 10;
-            onScoreChange?.Invoke(_score);
+            GameManager.Instance.playerInfo.scoreCurrent += 10;
+            onScoreChange?.Invoke(GameManager.Instance.playerInfo.scoreCurrent);
         }
         else
         {
@@ -58,14 +55,14 @@ public class Player : MonoBehaviour
     }
     void OnPlayerDeath()
     {
-        _score /= 2;
-        onScoreChange?.Invoke(_score);
+        GameManager.Instance.playerInfo.scoreCurrent /= 2;
+        onScoreChange?.Invoke(GameManager.Instance.playerInfo.scoreCurrent);
 
         _hp = 3;
         onHpChange?.Invoke(_hp);
 
-        _deathCount++;
-        onDeathsChange?.Invoke(_deathCount);
+        GameManager.Instance.playerInfo.deathCount++;
+        onDeathsChange?.Invoke(GameManager.Instance.playerInfo.deathCount);
 
         Respawn();
     }
@@ -81,7 +78,7 @@ public class Player : MonoBehaviour
     {
         if (transform.position.y < -10)
         {
-           OnPlayerFallen();
+            OnPlayerFallen();
         }
     }
 }

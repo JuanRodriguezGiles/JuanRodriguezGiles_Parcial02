@@ -1,22 +1,25 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 public class LevelCreator : MonoBehaviour
 {
     public GameObject player;
     public GameObject platform;
+    public GameObject saveSpot;
 
     int _rows;
     int _columns;
 
     void Start()
     {
-        _rows = GameManager.Get().rowsLevel;
-        _columns = GameManager.Get().columnsLevel;
+        _rows = GameManager.Instance.rowsLevel;
+        _columns = GameManager.Instance.columnsLevel;
         BuildLevel();
     }
     void BuildLevel()
     {
         GameObject platformParent = new GameObject("Platforms");
+        GameObject saveParent = new GameObject("Save Points");
         GameObject go;
         Vector3 position;
 
@@ -29,8 +32,19 @@ public class LevelCreator : MonoBehaviour
                 go = Instantiate(platform, position, Quaternion.identity, platformParent.transform);
                 go.name = "Platform";
 
+                if (rowIndex != _rows / 2 && columnIndex != _columns / 2) GameManager.Instance.emptyPositions.Add(position);
+
                 go.GetComponent<Platform>().enabled = !(rowIndex == _rows / 2 && columnIndex == _columns / 2); //Creates safespot for player respawn
             }
+        }
+
+        for (int i = 0; i < (_rows * _columns) / (_rows * _columns / 10); i++)
+        {
+            int index = Random.Range(0, GameManager.Instance.emptyPositions.Count);
+            position = GameManager.Instance.emptyPositions[index];
+            go = Instantiate(saveSpot, position, Quaternion.identity, saveParent.transform);
+            go.name = "Save Spot";
+            GameManager.Instance.emptyPositions.RemoveAt(index);
         }
 
         int playerX = _columns / 2;

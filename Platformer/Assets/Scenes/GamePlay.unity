@@ -938,6 +938,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1773623360729482, guid: 11aaea5348574644a9eb4f4504fcce3f, type: 3}
   platform: {fileID: 3538089576128786415, guid: 48c2c4908ad29e74a947f9ea6eb99c93, type: 3}
+  saveSpot: {fileID: 7724465223471026457, guid: 7a219e7eefdfbc34495c20073301324a, type: 3}
 --- !u!1 &1698123081
 GameObject:
   m_ObjectHideFlags: 0
