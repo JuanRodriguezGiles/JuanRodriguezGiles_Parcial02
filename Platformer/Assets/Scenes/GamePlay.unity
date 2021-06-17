@@ -1256,4 +1256,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coin: {fileID: 426217368353943691, guid: ec46f0a41e3c4544088e573957d5c23e, type: 3}
-  _timeThreshold: 1
+  _timeThreshold: 0.5
