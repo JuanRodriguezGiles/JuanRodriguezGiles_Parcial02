@@ -41,7 +41,7 @@ public class LevelCreator : MonoBehaviour
         for (int i = 0; i < (_rows * _columns) / (_rows * _columns / 10); i++)
         {
             int index = Random.Range(0, GameManager.Instance.emptyPositions.Count);
-            position = GameManager.Instance.emptyPositions[index];
+            position = GameManager.Instance.emptyPositions[index] + new Vector3(0, 0.5f, 0);
             go = Instantiate(saveSpot, position, Quaternion.identity, saveParent.transform);
             go.name = "Save Spot";
             GameManager.Instance.emptyPositions.RemoveAt(index);

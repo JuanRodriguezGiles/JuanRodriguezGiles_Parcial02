@@ -5,23 +5,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviourSingletonPersistent<GameManager>
 {
-    //#region INSTANCE
-    //private static GameManager instance;
-    //public static GameManager Get()
-    //{
-    //    return instance;
-    //}
-    //private void Awake()
-    //{
-    //    if (instance != null)
-    //        Destroy(gameObject);
-    //    else
-    //    {
-    //        instance = this;
-    //        DontDestroyOnLoad(gameObject);
-    //    }
-    //}
-    //#endregion
     public PlayerInfo playerInfo;
     public int rowsLevel;   
     public int columnsLevel;
@@ -36,7 +19,7 @@ public class GameManager : MonoBehaviourSingletonPersistent<GameManager>
     }
     void GameOver()
     {
-
+        SqlConnection.Instance.CallUpdate();
     }
     public void LoadGameplay()
     {

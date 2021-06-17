@@ -10,7 +10,7 @@ public class Coin : MonoBehaviour
     void Start()
     {
         _mesh = GetComponent<MeshRenderer>();
-        _mesh.material.color = Color.yellow;
+        _mesh.material.color = Color.red;
     }
     void OnTriggerEnter()
     {
@@ -20,7 +20,7 @@ public class Coin : MonoBehaviour
     void Update()
     {
         _time += Time.deltaTime;
-        if (!(_time >= 2)) return;
+        if (!(_time >= 1)) return;
         _mesh.material.color = _mesh.material.color == Color.yellow ? Color.red : Color.yellow;
         _time = 0;
     }
