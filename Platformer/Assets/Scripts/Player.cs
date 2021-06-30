@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using UnityEngine.Playables;
+
 public class Player : MonoBehaviour
 {
     [SerializeField] int _hp = 3;
@@ -10,6 +12,7 @@ public class Player : MonoBehaviour
     public static event Action<int> onScoreChange;
     public static event Action<int> onDeathsChange;
 
+    PlayableDirector _timerDirector;
     void OnEnable()
     {
         Coin.onCoinPickUp += OnCoinPickUp;
@@ -24,6 +27,8 @@ public class Player : MonoBehaviour
     {
         _rows = GameManager.Instance.rowsLevel;
         _columns = GameManager.Instance.columnsLevel;
+        _timerDirector = FindObjectOfType<PlayableDirector>();
+        _timerDirector.Play();
     }
     void OnCoinPickUp(Coin coin)
     {
@@ -73,6 +78,8 @@ public class Player : MonoBehaviour
         Vector3 position = new Vector3(playerX, 0, playerZ);
 
         transform.position = position;
+
+        _timerDirector.Play();
     }
     void Update()
     {
