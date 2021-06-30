@@ -536,8 +536,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 3
-  _score: 0
-  _deathCount: 0
 --- !u!114 &114963311885979670
 MonoBehaviour:
   m_ObjectHideFlags: 0

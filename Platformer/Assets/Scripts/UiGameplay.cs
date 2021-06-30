@@ -6,13 +6,14 @@ public class UiGameplay : MonoBehaviour
     public TMP_Text scoreText;
     public TMP_Text hpText;
     public TMP_Text deathsText;
-
+    public GameObject gameOverPanel;
     void OnEnable()
     {
         GameManager.onTimeChange += UpdateTimeText;
         Player.onHpChange += UpdateHpText;
         Player.onScoreChange += UpdateScoreText;
         Player.onDeathsChange += UpdateDeathsText;
+        GameManager.onGameOver += OnGameOver;
     }
     void OnDisable()
     {
@@ -20,6 +21,7 @@ public class UiGameplay : MonoBehaviour
         Player.onHpChange -= UpdateHpText;
         Player.onScoreChange -= UpdateScoreText;
         Player.onDeathsChange -= UpdateDeathsText;
+        GameManager.onGameOver -= OnGameOver;
     }
     void UpdateTimeText(float time)
     {
@@ -36,5 +38,9 @@ public class UiGameplay : MonoBehaviour
     void UpdateDeathsText(int deaths)
     {
         deathsText.text = deaths.ToString();
+    }
+    void OnGameOver()
+    {
+        gameOverPanel.SetActive(true);
     }
 }

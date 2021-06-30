@@ -8,9 +8,10 @@ public class GameManager : MonoBehaviourSingletonPersistent<GameManager>
     public PlayerInfo playerInfo;
     public int rowsLevel;   
     public int columnsLevel;
-    public static event Action<float> onTimeChange;
-    public List<Vector3> emptyPositions = new List<Vector3>();
     [SerializeField] float _maxTimeSeconds;
+    public static event Action<float> onTimeChange;
+    public static event Action onGameOver;
+    public List<Vector3> emptyPositions = new List<Vector3>();
     float _time;
     void Start()
     {
@@ -19,12 +20,17 @@ public class GameManager : MonoBehaviourSingletonPersistent<GameManager>
     }
     void GameOver()
     {
-        SqlConnection.Instance.CallUpdate();
+        Time.timeScale = 0;
+        onGameOver?.Invoke();
     }
     public void LoadGameplay()
     {
         SceneManager.LoadScene("GamePlay");
         StartCoroutine(Timer());
+    }
+    public void ExitGame()
+    {
+        Application.Quit();
     }
     IEnumerator Timer()
     {

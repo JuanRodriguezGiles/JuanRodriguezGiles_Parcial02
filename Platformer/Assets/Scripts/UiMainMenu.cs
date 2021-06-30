@@ -9,8 +9,4 @@ public class UiMainMenu : MonoBehaviour
         SqlConnection.Instance.CallRegister();
         GameManager.Instance.LoadGameplay();
     }
-    public void Exit()
-    {
-        Application.Quit();
-    }
 }
