@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     [SerializeField] int _hp = 3;
     int _rows;
     int _columns;
-
     public static event Action<int> onHpChange;
     public static event Action<int> onScoreChange;
     public static event Action<int> onDeathsChange;

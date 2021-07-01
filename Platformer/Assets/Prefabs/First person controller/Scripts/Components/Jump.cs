@@ -8,7 +8,6 @@ public class Jump : MonoBehaviour
     public float jumpStrength = 2;
     public event System.Action Jumped;
 
-
     void Reset()
     {
         groundCheck = GetComponentInChildren<GroundCheck>();

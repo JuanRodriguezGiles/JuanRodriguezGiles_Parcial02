@@ -1055,7 +1055,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 33554431
+    rgba: 16777215
   m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -2077,6 +2077,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coin: {fileID: 426217368353943691, guid: ec46f0a41e3c4544088e573957d5c23e, type: 3}
   _timeThreshold: 0.5
+  coinPickUpSounds:
+  - {fileID: 8300000, guid: 370ce87846d3c14449e978517073f3ac, type: 3}
+  - {fileID: 8300000, guid: da6e9c8e9f07d574ba43b15742c9908e, type: 3}
+  - {fileID: 8300000, guid: 2ba91faecfeb79d4dbb583a36e01fa83, type: 3}
+  - {fileID: 8300000, guid: cdb054a2f65ca29479bb9ccdb19f919f, type: 3}
+  - {fileID: 8300000, guid: 9c0ab240e42859c4f9ec33aec6227a06, type: 3}
+  - {fileID: 8300000, guid: cb76d429a90548949a34cbdcc66aa526, type: 3}
+  - {fileID: 8300000, guid: 2a8170da427dc844d80b32b62e25a47d, type: 3}
+  - {fileID: 8300000, guid: 025c94a3d38a6e9498836b09462d41ba, type: 3}
+  - {fileID: 8300000, guid: ad0dfd6e59fdce4428bf809b0fd965e9, type: 3}
+  - {fileID: 8300000, guid: 7a6c5e5f1667d9949aa4f45fd6d03c45, type: 3}
 --- !u!1 &1854180814
 GameObject:
   m_ObjectHideFlags: 0
@@ -2394,7 +2405,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 83886079
+    rgba: 16777215
   m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3

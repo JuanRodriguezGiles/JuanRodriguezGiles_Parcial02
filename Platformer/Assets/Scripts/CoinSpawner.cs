@@ -7,12 +7,8 @@ public class CoinSpawner : MonoBehaviour
 {
     public GameObject coin;
     GameObject _coinParent;
-
     [SerializeField] float _timeThreshold;
-
     float _time;
-    int _rows;
-    int _columns;
 
     void OnEnable()
     {
@@ -25,9 +21,6 @@ public class CoinSpawner : MonoBehaviour
     void Start()
     {
         _coinParent = new GameObject("Coins");
-
-        _rows = GameManager.Instance.rowsLevel;
-        _columns = GameManager.Instance.columnsLevel;
     }
     void UpdateEmptyPositions(Coin _coin)
     {

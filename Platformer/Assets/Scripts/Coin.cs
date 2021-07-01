@@ -6,7 +6,6 @@ public class Coin : MonoBehaviour
     MeshRenderer _mesh;
     float _time;
     public static event Action<Coin> onCoinPickUp;
-
     void Start()
     {
         _mesh = GetComponent<MeshRenderer>();

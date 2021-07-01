@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   givesPoints: 0
+  pickUpSound: {fileID: 0}
 --- !u!114 &3594285392529467227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,6 +123,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b713a154ebe77724799210453389a00a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  degreesPerSecond: 15
   amplitude: 0.25
   frequency: 1
